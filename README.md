@@ -42,7 +42,9 @@ neuralNetwork/src/main/java/com/technobium/NeuralNetworkStockPredictor.java
 4. replace the the src directory,input directory and pom.xml with the project you download.
 5. and at last use this command to run:
 
+
 mvn compile
+
 mvn exec:java -Dexec.mainClass="com.technobium.NeuralNetworkStockPredictor"
 
 
