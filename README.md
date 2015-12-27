@@ -3,9 +3,9 @@ This is a project to predict the stock and if you want to use it just change the
 
 #Prerequisites:
 
-Linux or Mac
-Java 1.3
-Apache Maven 3
+1.Linux or Mac
+2.Java 1.3
+3.Apache Maven 3
 
 #How to run:
 there is two way to run this project:
@@ -16,6 +16,7 @@ there is two way to run this project:
 3. use this command for run the project:
 
 mvn compile
+
 mvn exec:java -Dexec.mainClass="com.technobium.NeuralNetworkStockPredictor"
 
 and if you have problem you can follow the second way
