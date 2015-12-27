@@ -4,7 +4,9 @@ This is a project to predict the stock and if you want to use it just change the
 #Prerequisites:
 
 1.Linux or Mac
+
 2.Java 1.3
+
 3.Apache Maven 3
 
 #How to run:
