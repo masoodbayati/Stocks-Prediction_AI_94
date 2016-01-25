@@ -29,7 +29,7 @@ public class NeuralNetworkStockPredictor {
 	public static void main(String[] args) throws IOException {
 
 		NeuralNetworkStockPredictor predictor = new NeuralNetworkStockPredictor(
-				5, "input/rawTrainingData.csv");
+				15, "input/rawTrainingData.csv");
 		predictor.prepareData();
 
 		System.out.println("Training starting");
@@ -106,8 +106,18 @@ public class NeuralNetworkStockPredictor {
 	void trainNetwork() throws IOException {
 		NeuralNetwork<BackPropagation> neuralNetwork = new MultiLayerPerceptron(
 				slidingWindowSize, 2 * slidingWindowSize + 1, 1);
-
+		double m = Math.log((max + min)/2)/Math.log(10);
+		if(m>5){
+		m=3;}
+		if(m<2){
+		m=2;}
+		m = Math.pow(10,m);
 		int maxIterations = 1000;
+		double n = Math.log(max-min)/Math.log(10);
+		if(n>3){
+		n=3;}
+		n=n + Math.log(max -min);
+		
 		double learningRate = 0.001;
 		double maxError = 0.001;
 		SupervisedLearning learningRule = neuralNetwork.getLearningRule();
@@ -155,13 +165,11 @@ public class NeuralNetworkStockPredictor {
 	void testNetwork() {
 		NeuralNetwork neuralNetwork = NeuralNetwork
 				.createFromFile(neuralNetworkModelFilePath);
-		neuralNetwork.setInput(normalizeValue(2056.15),
-				normalizeValue(2061.02), normalizeValue(2086.24),
-				normalizeValue(2067.89), normalizeValue(2059.69));
+		neuralNetwork.setInput(normalizeValue(2110.74),normalizeValue(2104.5),normalizeValue(2117.39),normalizeValue(2107.78),normalizeValue(2098.53),normalizeValue(2101.04),normalizeValue(2071.26),normalizeValue(2079.43),normalizeValue(2044.16),normalizeValue(2040.24),normalizeValue(2065.95),normalizeValue(2053.4),normalizeValue(2081.19),normalizeValue(2074.28),normalizeValue(2099.5));
 
 		neuralNetwork.calculate();
 		double[] networkOutput = neuralNetwork.getOutput();
-		System.out.println("Expected value  : 2066.96");
+		System.out.println("Expected value  : 2089.27");
 		System.out.println("Predicted value : "
 				+ deNormalizeValue(networkOutput[0]));
 	}
